@@ -11,12 +11,16 @@ public class Player : MonoBehaviour
     [SerializeField] private float fallSpeed;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float maxFallSpeed;
+    [SerializeField] private float maxFastFallSpeed;
     [Header("Collision")]
     [SerializeField] private float stunDuration;
-    [SerializeField] private float bounceDistance;
+    [SerializeField] private int stunSpins;
     [SerializeField] private float bounceSpeed;
+    [SerializeField] private float bounceAccleration;
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform sprite;
+    [SerializeField] private Animator animator;
     private bool isStunned;
     private Vector2 move;
     private Vector2 target;
@@ -27,7 +31,14 @@ public class Player : MonoBehaviour
         {
             // falling
             move.y -= fallSpeed * Time.deltaTime;
-            move.y = Mathf.Clamp(move.y, -maxFallSpeed, Mathf.Infinity);
+            if(Input.GetKey(KeyCode.S))
+            {
+                move.y = Mathf.Clamp(move.y, -maxFastFallSpeed, Mathf.Infinity);
+            }
+            else
+            {
+                move.y = Mathf.Clamp(move.y, -maxFallSpeed, Mathf.Infinity);
+            }
 
             // jumping
             if (Input.GetKeyDown(KeyCode.Space))
@@ -37,10 +48,32 @@ public class Player : MonoBehaviour
 
             // moving
             move.x = Mathf.Lerp(move.x, Input.GetAxis("Horizontal") * moveSpeed, Time.deltaTime * moveAcceleration);
+            sprite.rotation = Quaternion.identity;
+
+            // animation
+            if(Input.GetAxis("Horizontal") != 0)
+            {
+                animator.Play("swimming");
+            }
+            else    
+            {
+                animator.Play("idle");
+            }
         }
         else // stunned movement
         {
-            transform.position = Vector3.Lerp(transform.position, target, bounceSpeed*Time.deltaTime);
+            move = Vector2.Lerp(move, Vector2.zero, bounceAccleration * Time.deltaTime);
+            sprite.Rotate(Vector3.forward * (stunSpins / stunDuration * 360) * Time.deltaTime);
+        }
+
+        // sprite flipping
+        if(move.x > 0)
+        {
+            sprite.localScale = new Vector3(1, 1, 1);
+        }
+        else if(move.x < 0)
+        {
+            sprite.localScale = new Vector3(-1, 1, 1);
         }
 
         // apply velocity
@@ -53,8 +86,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Wall" && !isStunned)
         {
             StartCoroutine(StunCooldown());
-            target = collision.GetContact(0).point + collision.GetContact(0).normal * bounceDistance;
-            move = Vector2.zero;
+            move = collision.GetContact(0).normal * bounceSpeed;
         }
     }
 
