@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: e43d2aef5f3f66a4fac9d5d5e3c79825
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Sailing Scribe
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6b1495bd92903aa4e924c2880757a02e, type: 3}
+  - {fileID: 12800000, guid: 8f13d683b8b172c47a42fbccdc5b74ae, type: 3}
+  - {fileID: 12800000, guid: 0650d5dfa9ccb734aa07c26c66624bf8, type: 3}
+  - {fileID: 12800000, guid: 9bb2944f9b43e924486fd20edb785c0d, type: 3}
+  - {fileID: 12800000, guid: 20e8719fe4bffe841b686ae6d2583e96, type: 3}
+  - {fileID: 12800000, guid: f7c8fc2927216a942b3e3be64b61e4c4, type: 3}
+  - {fileID: 12800000, guid: 8a105f27fd9400e4da150f26bd3203cf, type: 3}
+  - {fileID: 12800000, guid: 1ad444ff7dd697847ae16c2f57cc29b3, type: 3}
+  - {fileID: 12800000, guid: 144376419f0f9fb4093b20691e8ea937, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: font
+  assetBundleVariant: font
