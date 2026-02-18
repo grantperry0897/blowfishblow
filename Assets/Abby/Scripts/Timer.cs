@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
-        timerString = "00:00:00";
+        timerString = "0:00:00";
         timerTextObject.text = timerString;
     }
 
@@ -32,7 +32,11 @@ public class Timer : MonoBehaviour
             seconds = 0;
             minutes++;
         }
-        if (seconds < 10)
+        if (seconds < 10 && milliseconds < 10)
+        {
+            timerString = (int) minutes + ":0" + (int)seconds + ":0" + (int) milliseconds;
+        }
+        else if (seconds < 10)
         {
             timerString = (int) minutes + ":0" + (int)seconds + ":" + (int) milliseconds;
         }
@@ -40,10 +44,7 @@ public class Timer : MonoBehaviour
         {
             timerString = (int) minutes + ":" + (int)seconds + ":0" + (int) milliseconds;
         }
-        else if (seconds < 10 && milliseconds < 10)
-        {
-            timerString = (int) minutes + ":0" + (int)seconds + ":0" + (int) milliseconds;
-        }
+       
         else
         {
             timerString = (int) minutes + ":" + (int)seconds + ":" + (int) milliseconds;
