@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float sizeDecayFastFallMultiplier;
     [SerializeField] private float sizeIncrease;
     [SerializeField] private float sizeJumpSpeedMultiplier;
+    [Header("Sounds")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip bounceSound;
     private bool isStunned;
     private Vector2 move;
     private Vector2 target;
@@ -57,6 +61,7 @@ public class Player : MonoBehaviour
             {
                 move.y = jumpSpeed + (size - 1) * sizeJumpSpeedMultiplier;
                 size += sizeIncrease;
+                audioSource.PlayOneShot(jumpSound);
             }
 
             // moving
@@ -107,6 +112,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(StunCooldown());
             move = collision.GetContact(0).normal * bounceSpeed;
+            audioSource.PlayOneShot(bounceSound);
         }
     }
 
