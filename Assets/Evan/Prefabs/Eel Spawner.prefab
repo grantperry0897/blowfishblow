@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9985e19a40c7565499e8ed11df4c945a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 2
-  eelLifetime: 4
+  timeBetweenSpawns: 3
+  eelLifetime: 6
   eelSpeed: 2.5
   eelPrefab: {fileID: 1519550626924242022, guid: a6318634bd931124cb6144824be2f1ae, type: 3}
