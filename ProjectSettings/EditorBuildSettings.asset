@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Abby/Scenes/level-abby.unity
     guid: 620b5587a68a2cf4bbf780c6eccd8f60
+  - enabled: 1
+    path: Assets/Grant/Scenes/level-grant.unity
+    guid: 8b9817a5c1921a74fb29a1b4556706e6
+  - enabled: 1
+    path: Assets/Grant/Scenes/tutorial-level.unity
+    guid: af2fc418cf4f4694699bd8769d263f44
   m_configObjects: {}

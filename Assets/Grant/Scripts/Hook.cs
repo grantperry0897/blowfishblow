@@ -5,23 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Hook : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField] private string nextLevelName;
+    
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(nextLevelName);
         }
     }
 
