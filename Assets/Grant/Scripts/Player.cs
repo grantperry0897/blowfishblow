@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,9 +23,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform sprite;
     [SerializeField] private Animator animator;
+    [Header("Expand")]
+    [SerializeField] private float sizeDecay;
+    [SerializeField] private float sizeDecayFastFallMultiplier;
+    [SerializeField] private float sizeIncrease;
+    [SerializeField] private float sizeJumpSpeedMultiplier;
     private bool isStunned;
     private Vector2 move;
     private Vector2 target;
+    private float size;
+    private float sizeDecayMultiplier;
+    private int pearlCount;
 
     void Update()
     {
@@ -31,19 +41,22 @@ public class Player : MonoBehaviour
         {
             // falling
             move.y -= fallSpeed * Time.deltaTime;
-            if(Input.GetKey(KeyCode.S))
+            if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 move.y = Mathf.Clamp(move.y, -maxFastFallSpeed, Mathf.Infinity);
+                sizeDecayMultiplier = sizeDecayFastFallMultiplier;
             }
             else
             {
                 move.y = Mathf.Clamp(move.y, -maxFallSpeed, Mathf.Infinity);
+                sizeDecayMultiplier = 1;
             }
 
             // jumping
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                move.y = jumpSpeed;
+                move.y = jumpSpeed + (size - 1) * sizeJumpSpeedMultiplier;
+                size += sizeIncrease;
             }
 
             // moving
@@ -59,11 +72,13 @@ public class Player : MonoBehaviour
             {
                 animator.Play("idle");
             }
+
         }
         else // stunned movement
         {
             move = Vector2.Lerp(move, Vector2.zero, bounceAccleration * Time.deltaTime);
             sprite.Rotate(Vector3.forward * (stunSpins / stunDuration * 360) * Time.deltaTime);
+            sizeDecayMultiplier = 1;
         }
 
         // sprite flipping
@@ -78,6 +93,11 @@ public class Player : MonoBehaviour
 
         // apply velocity
         rb.velocity = move;
+
+        // player scaling
+        size -= sizeDecay * Time.deltaTime * sizeDecayMultiplier;
+        size = Mathf.Clamp(size, 1, Mathf.Infinity);
+        transform.localScale = new Vector3(size, size, size);
     }
 
     // collision
@@ -98,12 +118,26 @@ public class Player : MonoBehaviour
         isStunned = false;
     }
 
+    // player triggers
     void OnTriggerEnter2D(Collider2D collider)
     {
+        // eel kills player
         if (collider.tag == "Eel")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            pearlCount = 0;
         }
+        // pearl pickup
+        if (collider.tag == "Pearl")
+        {
+            Destroy(collider.gameObject);
+            pearlCount += 1;
+        }
+    }
+
+    public int GetPearlCount()
+    {
+        return pearlCount;
     }
 
 }
