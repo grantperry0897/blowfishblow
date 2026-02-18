@@ -9,10 +9,12 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {   
     [SerializeField] TMP_Text timerTextObject;
-    int milliseconds, seconds, minutes;
+    [SerializeField] bool isFinished;
+    float milliseconds, seconds, minutes;
     String timerString;
     void Start()
     {
+        isFinished = false;
         milliseconds = 0;
         seconds = 0;
         minutes = 0;
@@ -20,15 +22,33 @@ public class Timer : MonoBehaviour
         timerTextObject.text = timerString;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        milliseconds += (int) (Time.deltaTime * 1000);
-        milliseconds %= 60;
-        seconds += (int) Time.deltaTime;
-        minutes += seconds / 60;
-        seconds %= 60;
-        timerString = minutes + ":" + seconds + ":" + milliseconds;
+        milliseconds += Time.deltaTime * 1000;
+        milliseconds %= 100;
+        seconds += Time.deltaTime;
+        if(seconds >= 60)
+        {
+            seconds = 0;
+            minutes++;
+        }
+        if (seconds < 10)
+        {
+            timerString = (int) minutes + ":0" + (int)seconds + ":" + (int) milliseconds;
+        }
+        else if (milliseconds < 10)
+        {
+            timerString = (int) minutes + ":" + (int)seconds + ":0" + (int) milliseconds;
+        }
+        else if (seconds < 10 && milliseconds < 10)
+        {
+            timerString = (int) minutes + ":0" + (int)seconds + ":0" + (int) milliseconds;
+        }
+        else
+        {
+            timerString = (int) minutes + ":" + (int)seconds + ":" + (int) milliseconds;
+        }
+  
         timerTextObject.text = timerString;
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 51810a072b230ee4cadb1e6b5c21b848
+guid: be1777935d0826b4da82ae52c0b00ed2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Sailing Scribe
+  - Melon Pop
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
