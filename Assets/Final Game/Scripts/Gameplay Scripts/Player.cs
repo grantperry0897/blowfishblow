@@ -141,9 +141,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public int GetPearlCount()
+   public int GetPearlCount()
     {
-        return pearlCount;
+       return pearlCount;
     }
 
 }

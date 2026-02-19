@@ -5,28 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Grant/Scenes/Level 1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Abby/Scenes/Menu1.unity
-    guid: fae40d3da4c6ffe459aecdfb85f5c1f1
   - enabled: 1
-    path: Assets/Abby/Scenes/Menu.unity
-    guid: aed6ae510bf04e04bab942b7ffd3418c
+    path: Assets/Final Game/Scenes/Menu.unity
+    guid: 84613bb3179d3684ab8dc8d2222d0727
   - enabled: 1
-    path: Assets/Abby/Scenes/level-abby.unity
-    guid: 4871886e3d8b10844a1c911e7ebfedfb
+    path: Assets/Final Game/Scenes/tutorial-level.unity
+    guid: 546fe418223794b4fb9db56cfc35c750
   - enabled: 1
-    path: Assets/Abby/Scenes/level-tutorial-abby.unity
-    guid: caf40eb64200a2941a1b36a9ed108f6b
-  - enabled: 0
-    path: Assets/Abby/Scenes/drafts/level-abby.unity
-    guid: 620b5587a68a2cf4bbf780c6eccd8f60
-  - enabled: 0
-    path: Assets/Grant/Scenes/level-grant.unity
-    guid: 8b9817a5c1921a74fb29a1b4556706e6
-  - enabled: 0
-    path: Assets/Grant/Scenes/tutorial-level.unity
-    guid: af2fc418cf4f4694699bd8769d263f44
+    path: Assets/Final Game/Scenes/level-1.unity
+    guid: 99398216d2cc2504890231f1808bdb7d
   m_configObjects: {}
