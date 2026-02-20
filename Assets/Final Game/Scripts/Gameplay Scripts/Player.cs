@@ -1,7 +1,4 @@
 using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
